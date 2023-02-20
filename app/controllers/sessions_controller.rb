@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(:username => params[:username])
+    @user = User.find_by(:email => params[:email])
     if @user != nil && @user.password == params[:password]
       session[:id] = @user.id
       redirect to '/'
     else
       flash[:error] = "Incorrect email or password."
-      redirect '/sessions/login'
+      erb :'/sessions/login'
     end
   end
 
