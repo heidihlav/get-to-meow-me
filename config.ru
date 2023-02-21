@@ -5,5 +5,7 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 run ApplicationController
+use DiariesController
+use CatsController
 use UsersController
 use SessionsController
