@@ -1,1 +1,22 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<%# <h1>Insert the form to create a new instance of your model.</h1> %>
+
+<h1>Create a new cat</h1>
+<form method="post" action="/cats">
+  <p>
+    <div><label for="name">Name</label></div>
+    <input type="text" name="name" id="name" />
+  </p>
+  <p>
+    <div><label for="mood">Mood</label></div>
+    <input type="text" name="mood" id="mood" />
+  </p>
+  <p>
+    <div><label for="behavior">Behavior</label></div>
+    <input type="text" name="behavior" id="behavior" />
+  </p>
+  <%# <p> %>
+    <%# <%= @diary.day %> 
+  <%# </p>  %>
+
+  <input type="submit" value="Create Cat"/>
+</form>

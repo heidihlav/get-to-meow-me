@@ -12,7 +12,13 @@ class CatsController < ApplicationController
 
   # POST: /cats
   post "/cats" do
-    redirect "/cats"
+    @cat = Cat.new(name: params[:name], mood: params[:mood], behavior: params[:behavior])
+    if @cat.save
+      params[:id] = @cat.id
+      redirect '/'
+    else
+      erb :'cats/new'
+    end
   end
 
   # GET: /cats/5
