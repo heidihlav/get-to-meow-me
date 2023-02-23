@@ -2,6 +2,7 @@ class CatsController < ApplicationController
 
   # GET: /cats
   get "/cats" do
+    @cats = Cat.all
     erb :"/cats/index.html"
   end
 
@@ -18,6 +19,7 @@ class CatsController < ApplicationController
       redirect '/'
     else
       erb :'cats/new'
+      flash[:error] = "You've already saved this cat."
     end
   end
 
