@@ -2,8 +2,12 @@ class CatsController < ApplicationController
 
   # GET: /cats
   get "/cats" do
-    @cats = Cat.all
-    erb :"/cats/index.html"
+    if logged_in?
+      @cats = Cat.all
+      erb :"/cats/index.html"
+    else 
+      redirect '/login'
+    end
   end
 
   # GET: /cats/new
@@ -25,7 +29,12 @@ class CatsController < ApplicationController
 
   # GET: /cats/5
   get "/cats/:id" do
-    erb :"/cats/show.html"
+    if logged_in?
+      @cat = Cat.find_by(params[:id])
+      erb :"/cats/show.html"
+    else 
+      redirect '/login'
+    end
   end
 
   # GET: /cats/5/edit
