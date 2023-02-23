@@ -12,25 +12,26 @@ class CatsController < ApplicationController
 
   # GET: /cats/new
   get "/cats/new" do
+    @cat = Cat.new
     erb :"/cats/new.html"
   end
 
   # POST: /cats
   post "/cats" do
-    @cat = Cat.new(name: params[:name], mood: params[:mood], behavior: params[:behavior])
+    if logged_in?
+      @cat = current_user.cats.build(name: params[:cat][:name], mood: params[:cat][:mood], behavior: params[:cat][:behavior])
     if @cat.save
-      params[:id] = @cat.id
-      redirect '/'
+      redirect '/cats'
     else
-      erb :'cats/new'
       flash[:error] = "You've already saved this cat."
+      erb :'cats/new.html'
     end
   end
 
   # GET: /cats/5
   get "/cats/:id" do
     if logged_in?
-      @cat = Cat.find_by(params[:id])
+      @cat = Cat.find_by_id(params[:id])
       erb :"/cats/show.html"
     else 
       redirect '/login'
@@ -39,6 +40,7 @@ class CatsController < ApplicationController
 
   # GET: /cats/5/edit
   get "/cats/:id/edit" do
+    @cat = Cat.find_by_id(params[:id])
     erb :"/cats/edit.html"
   end
 
