@@ -5,7 +5,7 @@ class CatsController < ApplicationController
     if logged_in?
       @cats = Cat.all
       erb :"/cats/index.html"
-      binding.pry
+      # binding.pry
     else 
       redirect '/login'
     end
