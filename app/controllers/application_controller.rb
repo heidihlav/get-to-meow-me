@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     @cats = Cat.all
+    @diaries = Diary.all
     erb :index
   end
 

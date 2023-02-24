@@ -1,1 +1,4 @@
-<h1>This is the Model's index page.</h1>
+<h1>Your diaries for all your cats.</h1>
+<% @diaries.each do |diary| %>
+  <p><a href="/diaries/<%= diary.id %>"><%= diary.title %></a></p>
+<% end %>
