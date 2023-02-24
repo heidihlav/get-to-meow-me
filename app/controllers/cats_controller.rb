@@ -5,6 +5,7 @@ class CatsController < ApplicationController
     if logged_in?
       @cats = Cat.all
       erb :"/cats/index.html"
+      binding.pry
     else 
       redirect '/login'
     end
@@ -12,14 +13,18 @@ class CatsController < ApplicationController
 
   # GET: /cats/new
   get "/cats/new" do
-    @cat = Cat.new
-    erb :"/cats/new.html"
+    if logged_in?
+      @cat = Cat.new
+      erb :"/cats/new.html"
+    else 
+      redirect '/login' 
+    end
   end
 
   # POST: /cats
   post "/cats" do
     if logged_in?
-      @cat = current_user.cats.build(name: params[:cat][:name], mood: params[:cat][:mood], behavior: params[:cat][:behavior])
+      @cat = current_user.cats.build(name: params[:cat][:name], mood: params[:cat][:mood], behavior: params[:cat][:behavior], diary_id: params[:cat][:diary_id])
       @cat.save
       redirect '/cats'
     else
@@ -54,6 +59,7 @@ class CatsController < ApplicationController
     if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
       @cat.update(name: params[:cat][:name], mood: params[:cat][:mood], behavior: params[:cat][:behavior])
+      @cat.save
       redirect "/cats/#{@cat.id}"
     else 
       redirect "/cats/#{@cat.id}/edit"

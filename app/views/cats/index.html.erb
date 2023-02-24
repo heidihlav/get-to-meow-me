@@ -1,5 +1,13 @@
 <h1>Your cats</h1>
 
+<% current_user.cats.each do |cat| %>
+  <ul>
+    <p><a href="/cats/<%= cat.name %>"></a></p>
+    <br>
+  </ul>
+<% end %>
+
+
 <% @cats.each do |cat| %>
 <p><a href="/cats/<%= cat.name %>"></a></p>
 <% end %>

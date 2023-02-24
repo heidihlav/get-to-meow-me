@@ -13,6 +13,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    @cats = Cat.all
     erb :index
   end
 
