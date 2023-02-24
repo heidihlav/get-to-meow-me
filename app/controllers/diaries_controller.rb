@@ -7,6 +7,7 @@ class DiariesController < ApplicationController
       erb :"/diaries/index.html"
     else
       redirect '/login'
+    end
   end
 
   # GET: /diaries/new
@@ -43,17 +44,36 @@ class DiariesController < ApplicationController
 
   # GET: /diaries/5/edit
   get "/diaries/:id/edit" do
-
-    erb :"/diaries/edit.html"
+    if logged_in? && current_user
+      @diary = Diary.find_by_id(params[:id])
+      # binding.pry
+      erb :"/diaries/edit.html"
+    else
+      redirect '/diaries'
+    end
   end
 
   # PATCH: /diaries/5
   patch "/diaries/:id" do
-    redirect "/diaries/:id"
+    if logged_in? && current_user
+      @diary = Diary.find_by_id(params[:id])
+      @diary.update(title: params[:diary][:title], day: params[:diary][:day])
+      @diary.save
+      redirect "/diaries/#{@diary.id}"
+    else 
+      redirect "/diaries/#{@diary.id}/edit"
+    end
   end
 
   # DELETE: /diaries/5/delete
   delete "/diaries/:id/delete" do
-    redirect "/diaries"
+    if logged_in? && current_user
+      @diary = Diary.find_by_id(params[:id])
+        @diary.delete
+        redirect '/diaries'
+    else       
+      redirect "/diaries/#{@diary.id}/edit"
+    end
   end
+  
 end
