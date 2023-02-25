@@ -1,1 +1,13 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<form method="post" action="/diaries/<%= @diary.id %>">
+  <input type="hidden" name="_method" value="patch" />
+  <p>
+    <div><label for="title">Title</label></div>
+    <input id="name" type="text" name="diary[title]" value="<%= @diary.title %>" />
+  </p>
+  <p>
+    <div><label for="day">Day</label></div>
+    <input id="day" type="datetime" name="diary[day]" value="<%= @diary.day %>" />
+  </p>
+
+  <input type="submit" value="Update Entry" />
+</form>
