@@ -23,7 +23,7 @@ class DiariesController < ApplicationController
   # POST: /diaries
   post "/diaries" do
     if logged_in?
-      @diary = current_user.diaries.build(title: params[:diary][:title], day: params[:diary][:day], user_id: params[:diary][:user_id])
+      @diary = current_user.diaries.build(title: params[:diary][:title], date: params[:diary][:date])
       @diary.save
       redirect '/diaries'
     else
@@ -57,7 +57,7 @@ class DiariesController < ApplicationController
   patch "/diaries/:id" do
     if logged_in? && current_user
       @diary = Diary.find_by_id(params[:id])
-      @diary.update(title: params[:diary][:title], day: params[:diary][:day])
+      @diary.update(title: params[:diary][:title], date: params[:diary][:date])
       @diary.save
       redirect "/diaries/#{@diary.id}"
     else 
