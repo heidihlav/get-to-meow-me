@@ -4,15 +4,15 @@
 <form method="post" action="/cats">
   <p>
     <div><label for="name">Name</label></div>
-    <input type="text" name="name" id="name" />
+    <input type="text" name="cat[name]" id="name" />
   </p>
   <p>
     <div><label for="mood">Mood</label></div>
-    <input type="text" name="mood" id="mood" />
+    <input type="text" name="cat[mood]" id="mood" />
   </p>
   <p>
     <div><label for="behavior">Behavior</label></div>
-    <input type="text" name="behavior" id="behavior" />
+    <input type="text" name="cat[behavior]" id="behavior" />
   </p>
   <%# <p> %>
     <%# <%= @diary.day %> 
