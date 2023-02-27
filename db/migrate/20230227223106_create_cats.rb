@@ -4,8 +4,8 @@ class CreateCats < ActiveRecord::Migration[4.2]
       t.string :name
       t.string :mood
       t.string :behavior
-
-      t.timestamps null: false
+      t.integer :user_id
+      t.integer :diary_id
     end
   end
 end
