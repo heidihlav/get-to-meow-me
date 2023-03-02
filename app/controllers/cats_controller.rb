@@ -15,7 +15,7 @@ class CatsController < ApplicationController
   get "/cats/new" do
     if logged_in?
       @cat = Cat.new
-      @diary = Diary.all
+      # @diary = Diary.all
       # binding.pry
       erb :"/cats/new.html"
     else 
@@ -26,8 +26,8 @@ class CatsController < ApplicationController
   # POST: /cats
   post "/cats" do
     if logged_in?
-      @diary = Diary.all
-      @cat = current_user.cats.build(name: params[:cat][:name], mood: params[:cat][:mood], behavior: params[:cat][:behavior], diary_id: params[:cat][:diary_id])
+      # @diary = Diary.all
+      @cat = current_user.cats.build(name: params[:cat][:name])
       @cat.save
       # binding.pry
       redirect "/cats"
@@ -62,7 +62,7 @@ class CatsController < ApplicationController
   patch "/cats/:id" do
     if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
-      @cat.update(name: params[:cat][:name], mood: params[:cat][:mood], behavior: params[:cat][:behavior])
+      @cat.update(name: params[:cat][:name])
       @cat.save
       redirect "/cats/#{@cat.id}"
     else 

@@ -11,3 +11,12 @@
 
   <input type="submit" value="Update Entry" />
 </form>
+
+<p>
+    <div><label for="mood">Mood</label></div>
+    <input id="mood" type="text" name="cat[mood]" value="<%= @cat.mood %>" />
+  </p>
+  <p>
+    <div><label for="behavior">Behavior</label></div>
+    <input id="behavior" type="text" name="cat[behavior]" value="<%= @cat.behavior %>" />
+  </p>

@@ -77,3 +77,5 @@ class DiariesController < ApplicationController
   end
   
 end
+
+# , mood: params[:cat][:mood], behavior: params[:cat][:behavior]
