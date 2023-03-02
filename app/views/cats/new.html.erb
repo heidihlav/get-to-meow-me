@@ -1,5 +1,5 @@
 
-<h1>Create a new cat</h1>
+<h1>New Entry</h1>
 <form method="post" action="/cats">
   <p>
     <div><label for="name">Name</label></div>
@@ -13,6 +13,25 @@
     <div><label for="behavior">Behavior</label></div>
     <input type="text" name="cat[behavior]" id="behavior" />
   </p>
+  <p>
+    <div><label>Select Diary:</label></div>
+      <%Diary.all.each do |d|%>
+      <% if current_user.diaries.include?(d) %>
+        <input type="radio" name="cat[diary_id]" id="<%= d.title %>" value="<%=d.id%>"> <%=d.title%></input>
+      <% end %>
+    <%end%>
+  </p>
+  <p>
+    <div><label for="date">Select Date:</label></div>
+      <% if current_user %>
+        <input type="datetime-local" name="diary[date]" id="<%= diary.date %>" value="<%=diary.date%>"> <%=diary.date%></input>
+      <% end %>
+  </p>
 
-  <input type="submit" value="Create Cat"/>
+
+
+
+  <input type="submit" value="Create Entry"/>
 </form>
+
+
