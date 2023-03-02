@@ -23,13 +23,8 @@
   </p>
   <p>
     <div><label for="date">Select Date:</label></div>
-      <% if current_user %>
-        <input type="datetime-local" name="diary[date]" id="<%= diary.date %>" value="<%=diary.date%>"> <%=diary.date%></input>
-      <% end %>
+    <input type="datetime-local" name="diary[date]" />
   </p>
-
-
-
 
   <input type="submit" value="Create Entry"/>
 </form>

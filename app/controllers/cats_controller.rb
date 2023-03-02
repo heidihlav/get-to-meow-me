@@ -26,6 +26,7 @@ class CatsController < ApplicationController
   # POST: /cats
   post "/cats" do
     if logged_in?
+      @diary = Diary.all
       @cat = current_user.cats.build(name: params[:cat][:name], mood: params[:cat][:mood], behavior: params[:cat][:behavior], diary_id: params[:cat][:diary_id])
       @cat.save
       # binding.pry

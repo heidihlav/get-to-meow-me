@@ -14,16 +14,15 @@ ActiveRecord::Schema.define(version: 2023_02_27_223545) do
 
   create_table "cats", force: :cascade do |t|
     t.string "name"
-    t.string "mood"
-    t.string "behavior"
     t.integer "user_id"
-    t.integer "diary_id"
   end
 
   create_table "diaries", force: :cascade do |t|
-    t.string "title"
-    t.string "date"
+    t.string "mood"
+    t.string "behavior"
+    t.datetime "date"
     t.integer "user_id"
+    t.integer "cat_id"
   end
 
   create_table "users", force: :cascade do |t|
