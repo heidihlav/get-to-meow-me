@@ -1,28 +1,19 @@
 <h1>New Entry</h1>
-<form method="post" action="/cats">
-  <p>
-    <div><label for="name">Name</label></div>
-    <input type="text" name="cat[name]" id="name" />
-  </p>
+<form method="post" action="/cats/:id/diaries">
+  
+  <h1> <%=@cat.name%> </h1>
+  <input type="hidden" value= <%= @cat.id %> name="diary[cat_id]" id="cat_id" />
   <p>
     <div><label for="mood">Mood</label></div>
-    <input type="text" name="cat[mood]" id="mood" />
+    <input type="text" name="diary[mood]" id="mood" />
   </p>
   <p>
     <div><label for="behavior">Behavior</label></div>
-    <input type="text" name="cat[behavior]" id="behavior" />
-  </p>
-  <p>
-    <div><label>Select Diary:</label></div>
-      <%Diary.all.each do |d|%>
-      <% if current_user.diaries.include?(d) %>
-        <input type="radio" name="cat[diary_id]" id="<%= d.title %>" value="<%=d.id%>"> <%=d.title%></input>
-      <% end %>
-    <%end%>
+    <input type="text" name="diary[behavior]" id="behavior" />
   </p>
   <p>
     <div><label for="date">Select Date:</label></div>
-    <input type="datetime-local" name="diary[date]" />
+    <input type="datetime-local" name="diary[date]" id="date" />
   </p>
 
   <input type="submit" value="Create Entry"/>

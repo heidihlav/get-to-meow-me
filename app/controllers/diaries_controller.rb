@@ -1,9 +1,11 @@
 class DiariesController < ApplicationController
 
   # GET: /diaries
-  get "/diaries" do
+  get "/cats/:id/diaries" do
     if logged_in?
-      @diaries = Diary.all
+      @cat = Cat.find_by_id(params[:id])
+      # binding.pry
+      @diaries = @cat.diaries
       erb :"/diaries/index.html"
     else
       redirect '/login'
@@ -11,9 +13,11 @@ class DiariesController < ApplicationController
   end
 
   # GET: /diaries/new
-  get "/diaries/new" do
+  get "/cats/:id/diaries/new" do
     if logged_in?
+      @cat = Cat.find_by_id(params[:id])
       @diary = Diary.new
+      @diary.cat_id
       erb :"/diaries/new.html"
     else 
       redirect '/login' 
@@ -21,11 +25,11 @@ class DiariesController < ApplicationController
   end
 
   # POST: /diaries
-  post "/diaries" do
+  post "/cats/:id/diaries" do
     if logged_in?
-      @diary = current_user.diaries.build(title: params[:diary][:title], date: params[:diary][:date])
+      @diary = current_user.diaries.build(cat_id: params[:diary][:cat_id], mood: params[:diary][:mood], behavior: params[:diary][:behavior], date: params[:diary][:date])
       @diary.save
-      redirect '/diaries'
+      redirect '/cats/:id/diaries'
     else
       flash[:error] = "You've already saved this diary."
       erb :'diaries/new.html'
@@ -78,4 +82,3 @@ class DiariesController < ApplicationController
   
 end
 
-# , mood: params[:cat][:mood], behavior: params[:cat][:behavior]
