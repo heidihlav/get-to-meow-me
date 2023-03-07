@@ -1,0 +1,6 @@
+
+
+
+
+
+Cat.destroy_all

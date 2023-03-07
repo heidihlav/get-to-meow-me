@@ -25,14 +25,17 @@ class CatsController < ApplicationController
     if logged_in?
       # @diary = Diary.all
       @cat = current_user.cats.build(name: params[:cat][:name])
-      binding.pry
-      if current_user.cats = "" && @cat.name = ""
-        @cat.save
-        redirect '/cats'
-      else 
-        flash[:error] = "You've already saved this cat."
-        redirect '/login'
-      end
+      found_cat = current_user.cats.find_by(name: @cat.name)
+        if found_cat
+          flash[:error] = "You've already saved this cat."
+          redirect '/cats/new'
+        else
+          @cat.save
+          redirect '/cats'
+        end
+    else 
+      flash[:error] = "Please log in."
+      redirect '/login'
     end
   end
 
