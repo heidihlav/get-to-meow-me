@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
 
-  # GET: /cats
+  # GET: /cats ok
   get "/cats" do
     if logged_in?
       @cats = Cat.all

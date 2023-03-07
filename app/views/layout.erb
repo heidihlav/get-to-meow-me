@@ -15,14 +15,18 @@
   </head>
   <body>
     <div class="wrapper">
-      <nav>
-        <% if logged_in? %>
-          <a href="/logout">Log Out</a> |
-          <p>Welcome, <%=current_user.email %></p>
-        <% else %>
-          <a href="/login">Log In</a> |
-          <a href="/users/new">Sign Up</a>
-        <% end %>
+      <nav class="menu">
+        <ul>
+          <% if logged_in? %>
+            <li>Welcome, <%=current_user.email %></li>
+            <li><a href="/logout">Log Out</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/cats">Your Cats</a></li>
+          <% else %>
+            <a href="/login">Log In</a>
+            <a href="/users/new">Sign Up</a>
+          <% end %>
+        </ul>
       </nav>
 
         <%= yield %>

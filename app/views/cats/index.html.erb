@@ -1,5 +1,16 @@
 <h1>Your cats</h1>
 
-<% @cats.each do |cat| %>
-  <p><a href="/cats/<%= cat.id %>"><%= cat.name %></a></p>
-<% end %>
+<p>
+  <% if @cats == [] %>
+    <div><%= "You don't have any cats yet!"%></div>
+  <% end %>
+</p>
+<p>
+  <% @cats.each do |cat| %>
+    <div><a href="/cats/<%= cat.id %>"><%= cat.name %></a></div>
+  <% end %>
+</p>
+  
+<%# <form method="post" action="/cats/new">
+<input type="submit" value="Create"/> %>
+
