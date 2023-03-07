@@ -5,7 +5,6 @@ class CatsController < ApplicationController
     if logged_in?
       @cats = Cat.all
       erb :"/cats/index.html"
-      # binding.pry
     else 
       redirect '/login'
     end
@@ -15,8 +14,6 @@ class CatsController < ApplicationController
   get "/cats/new" do
     if logged_in?
       @cat = Cat.new
-      # @diary = Diary.all
-      # binding.pry
       erb :"/cats/new.html"
     else 
       redirect '/login' 
@@ -28,12 +25,14 @@ class CatsController < ApplicationController
     if logged_in?
       # @diary = Diary.all
       @cat = current_user.cats.build(name: params[:cat][:name])
-      @cat.save
-      # binding.pry
-      redirect "/cats"
-    else
-      flash[:error] = "You've already saved this cat."
-      erb :'cats/new.html'
+      binding.pry
+      if current_user.cats = "" && @cat.name = ""
+        @cat.save
+        redirect '/cats'
+      else 
+        flash[:error] = "You've already saved this cat."
+        redirect '/login'
+      end
     end
   end
 
@@ -51,7 +50,6 @@ class CatsController < ApplicationController
   get "/cats/:id/edit" do
     if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
-      # binding.pry
       erb :"/cats/edit.html"
     else
       redirect '/cats'
