@@ -1,11 +1,14 @@
-<%# <h1>This is the show page for an individual instance of your model.</h1> %>
-
 <h1><%= @cat.name %></h1>
 
+<% if @cat.name == [] %>
+  <div>"You don't have any diaries for" <%= @cat.name %> "yet!"</div>
+<% end %>
+<div><a href="/cats/<%= @cat.id %>/diaries/new"><button>New Diary</button></a></div> 
+<%# <div><a href="/cats/<%= @cat.id/edit"><button>Edit</button></a></div>  %>
+    
 <div>
-    <a href="/cats/<%= @cat.id %>/edit"><button>Edit</button></a> 
-    <form method="post" action="/cats/<%= @cat.id %>" style="display: inline-block;">
-      <input type="hidden" name="_method" value="delete" />
-      <input type="submit" value="Delete" />
-    </form>
-  </div>
+  <form method="post" action="/cats/<%= @cat.id %>" style="display: inline-block;">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" value="Delete" />
+  </form>
+</div>

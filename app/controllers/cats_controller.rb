@@ -10,7 +10,7 @@ class CatsController < ApplicationController
     end
   end
 
-  # GET: /cats/new
+  # GET: /cats/new ok
   get "/cats/new" do
     if logged_in?
       @cat = Cat.new
@@ -20,7 +20,7 @@ class CatsController < ApplicationController
     end
   end
 
-  # POST: /cats
+  # POST: /cats ok
   post "/cats" do
     if logged_in?
       # @diary = Diary.all

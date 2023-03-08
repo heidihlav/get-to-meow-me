@@ -1,8 +1,8 @@
 <h1>New Entry</h1>
 <form method="post" action="/cats/:id/diaries">
   
-  <h1> <%=@cat.name%> </h1>
-  <input type="hidden" value= <%= @cat.id %> name="diary[cat_id]" id="cat_id" />
+  <h2><%=@cat.name%></h2>
+  <input type="hidden" value=<%= @cat.id %> name="diary[cat_id]" id="cat_id" />
   <p>
     <div><label for="mood">Mood</label></div>
     <input type="text" name="diary[mood]" id="mood" />
