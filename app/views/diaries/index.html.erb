@@ -1,5 +1,10 @@
-<h1>Your diaries for all your cats.</h1>
-<%=@cat.name%>
-<% @diaries.each do |diary| %>
-  <p><a href="/diaries/<%= diary.id %>"><%=diary.date%></a></p>
-<% end %>
+<h1>Your diaries for <%=@cat.name%></h1>
+<div><a href="/diaries/<%= @cat.id %>"><%=@diaries.date%></div>
+
+
+
+
+
+
+
+

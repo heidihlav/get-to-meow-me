@@ -3,8 +3,9 @@ class DiariesController < ApplicationController
   # GET: /diaries
   get "/cats/:id/diaries" do
     if logged_in?
-      @cat = Cat.find_by_id(params[:id])
-      @diaries = current_user.diaries.find_by(cat_id: @cat.cat_id) 
+      @diaries = current_user.diaries.find_by(params[:cat_id])
+      @cat = Cat.find_by(id: @diaries.cat_id) 
+      # @diary = Diary.find_by_id(params[:id])
       # @diaries = @cat.diaries
       erb :"/diaries/index.html"
     else
@@ -28,8 +29,6 @@ class DiariesController < ApplicationController
   post "/cats/:id/diaries" do
     if logged_in?
       @diary = current_user.diaries.build(cat_id: params[:diary][:cat_id], mood: params[:diary][:mood], behavior: params[:diary][:behavior], date: params[:diary][:date])
-      binding.pry
-
       @diary.save 
       redirect '/cats/:id/diaries'
     else
@@ -42,6 +41,7 @@ class DiariesController < ApplicationController
   get "/diaries/:id" do
     if logged_in?
       @diary = Diary.find_by_id(params[:id])
+      @cat = Cat.find_by(id: @diary.cat_id) 
       erb :"/diaries/show.html"
     else 
       redirect '/login'

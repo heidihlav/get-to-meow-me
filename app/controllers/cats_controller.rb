@@ -39,7 +39,7 @@ class CatsController < ApplicationController
     end
   end
 
-  # GET: /cats/5
+  # GET: /cats/5 ok
   get "/cats/:id" do
     if logged_in?
       @cat = Cat.find_by_id(params[:id])
@@ -49,7 +49,7 @@ class CatsController < ApplicationController
     end
   end
 
-  # GET: /cats/5/edit
+  # GET: /cats/5/edit ok
   get "/cats/:id/edit" do
     if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
@@ -59,7 +59,7 @@ class CatsController < ApplicationController
     end  
   end
 
-  # PATCH: /cats/5
+  # PATCH: /cats/5 ok
   patch "/cats/:id" do
     if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
