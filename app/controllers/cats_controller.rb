@@ -41,11 +41,12 @@ class CatsController < ApplicationController
 
   # GET: /cats/5 ok
   get "/cats/:id" do
-    if logged_in?
+    if logged_in? && @cat = nil
       @cat = Cat.find_by_id(params[:id])
       erb :"/cats/show.html"
-    else 
-      redirect '/login'
+    else
+      flash[:error] = "You've need to create a new cat!"
+      redirect '/cats'
     end
   end
 
@@ -75,8 +76,8 @@ class CatsController < ApplicationController
   delete "/cats/:id/delete" do
     if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
-        @cat.delete
-        redirect '/cats'
+        @cat.destroy
+        redirect '/'
     else       
       redirect "/cats/#{@cat.id}/edit"
     end
