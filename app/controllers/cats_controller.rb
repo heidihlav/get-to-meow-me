@@ -3,7 +3,8 @@ class CatsController < ApplicationController
   # GET: /cats ok
   get "/cats" do
     if logged_in?
-      @cats = Cat.all
+      @cats = current_user.cats
+      # binding.pry
       erb :"/cats/index.html"
     else 
       flash[:error] = "Please log in."
@@ -13,8 +14,9 @@ class CatsController < ApplicationController
 
   # GET: /cats/new ok
   get "/cats/new" do
-    if logged_in?
+    if logged_in? && current_user
       @cat = Cat.new
+      binding.pry
       erb :"/cats/new.html"
     else 
       redirect '/login' 
@@ -41,7 +43,7 @@ class CatsController < ApplicationController
 
   # GET: /cats/5 ok
   get "/cats/:id" do
-    if logged_in? && @cat == nil
+    if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
       erb :"/cats/show.html"
     else
