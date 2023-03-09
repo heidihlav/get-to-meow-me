@@ -2,14 +2,14 @@ class DiariesController < ApplicationController
 
   # GET: /diaries
   get "/cats/:id/diaries" do
-    if logged_in?
+    if logged_in? && current_user.diaries != []
       @diaries = current_user.diaries.find_by(params[:cat_id])
       @cat = Cat.find_by(id: @diaries.cat_id) 
       # @diary = Diary.find_by_id(params[:id])
       # @diaries = @cat.diaries
       erb :"/diaries/index.html"
     else
-      redirect '/login'
+      redirect '/cats'
     end
   end
 

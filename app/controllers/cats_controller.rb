@@ -16,7 +16,7 @@ class CatsController < ApplicationController
   get "/cats/new" do
     if logged_in? && current_user
       @cat = Cat.new
-      binding.pry
+      # binding.pry
       erb :"/cats/new.html"
     else 
       redirect '/login' 
