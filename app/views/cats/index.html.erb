@@ -1,14 +1,12 @@
 <h1>Your cats</h1>
 <p>
-  <% if @cats == [] %>
-    <a href="/cats/new">Click here to create a new cat!</a>
-  <% end %>
-</p>
-<p>
   <% @cats.each do |cat| %>
     <div><a href="/cats/<%= cat.id %>"><%= cat.name %></a></div>
   <% end %>
 </p>
+
+<p>
+    <a href="/cats/new">Click here to create a new cat!</a>
+</p>
   
-<input type="submit" value="Create"/> 
 

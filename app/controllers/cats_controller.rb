@@ -75,7 +75,8 @@ class CatsController < ApplicationController
   delete "/cats/:id/delete" do
     if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
-        @cat.destroy
+      @diaries = Diary.find_by(params[:cat_id]) 
+        @cat.destroy && @diaries.destroy
         redirect '/'
     else
       flash[:error] = "Please log in."
