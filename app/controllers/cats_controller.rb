@@ -6,6 +6,7 @@ class CatsController < ApplicationController
       @cats = Cat.all
       erb :"/cats/index.html"
     else 
+      flash[:error] = "Please log in."
       redirect '/login'
     end
   end
@@ -34,18 +35,16 @@ class CatsController < ApplicationController
           redirect '/cats'
         end
     else 
-      flash[:error] = "Please log in."
       redirect '/login'
     end
   end
 
   # GET: /cats/5 ok
   get "/cats/:id" do
-    if logged_in? && @cat = nil
+    if logged_in? && @cat == nil
       @cat = Cat.find_by_id(params[:id])
       erb :"/cats/show.html"
     else
-      flash[:error] = "You've need to create a new cat!"
       redirect '/cats'
     end
   end
@@ -72,14 +71,15 @@ class CatsController < ApplicationController
     end
   end
 
-  # DELETE: /cats/5/delete
+  # DELETE: /cats/5/delete ok - gives sinatra error when going to route and not logged in????
   delete "/cats/:id/delete" do
     if logged_in? && current_user
       @cat = Cat.find_by_id(params[:id])
         @cat.destroy
         redirect '/'
-    else       
-      redirect "/cats/#{@cat.id}/edit"
+    else
+      flash[:error] = "Please log in."
+      redirect '/login'
     end
   end
 
