@@ -1,8 +1,5 @@
 <h1><%= @cat.name %></h1>
-
-<% if @cat.name == [] %>
-  <div>"You don't have any diaries for" <%= @cat.name %> "yet!"</div>
-<% end %>
+<p><%flash[:error]%></p>
 <div><a href="/cats/<%= @cat.id %>/diaries">Click here to see all of <%=@cat.name%>'s entries</a></div>
 <div><a href="/cats/<%= @cat.id %>/diaries/new"><button>New Diary</button></a></div>
 

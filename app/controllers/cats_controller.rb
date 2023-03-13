@@ -44,10 +44,13 @@ class CatsController < ApplicationController
   # GET: /cats/5 ok
   get "/cats/:id" do
     if logged_in? && current_user
+      @diary = Diary.find_by_id(params[:id])
       @cat = Cat.find_by_id(params[:id])
-        if @cat.user_id == current_user.id
+      binding.pry
+        if @cat.id && @diary.cat_id
           erb :"/cats/show.html"
         else
+          flash[:error] = "You don't have any entries for this."
           redirect '/cats'
         end
     end

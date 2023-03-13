@@ -2,7 +2,7 @@ class DiariesController < ApplicationController
 
   # GET: /diaries
   get "/cats/:id/diaries" do
-    if logged_in? && current_user.diaries != []
+    if logged_in? 
       @cat = Cat.find_by(params[:id])
       @diaries = current_user.diaries.find_by(cat_id: @cat.id)
       # @cat = Cat.find_by(id: @diaries.cat_id) 
