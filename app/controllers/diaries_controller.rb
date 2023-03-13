@@ -3,9 +3,10 @@ class DiariesController < ApplicationController
   # GET: /diaries
   get "/cats/:id/diaries" do
     if logged_in? && current_user.diaries != []
+      @cat = Cat.find_by(params[:id])
       @diaries = current_user.diaries.find_by(params[:cat_id])
-      @cat = Cat.find_by(id: @diaries.cat_id) 
-      # @diary = Diary.find_by_id(params[:id])
+      # @cat = Cat.find_by(id: @diaries.cat_id) 
+      # @diary = Diary.find_by_id(params[:id]) 
       # @diaries = @cat.diaries
       erb :"/diaries/index.html"
     else
@@ -15,21 +16,21 @@ class DiariesController < ApplicationController
 
   # GET: /diaries/new
   get "/cats/:id/diaries/new" do
-    if logged_in?
-      @cat = Cat.find_by_id(params[:id])
+    if logged_in? && current_user.cats != []
+      @cat = current_user.cats.find_by_id(params[:id])
       @diary = Diary.new
       @diary.cat_id
       erb :"/diaries/new.html"
     else 
-      redirect '/login' 
+      redirect '/cats' 
     end
   end
 
   # POST: /diaries
   post "/cats/:id/diaries" do
     if logged_in?
-      @diary = current_user.diaries.build(cat_id: params[:diary][:cat_id], mood: params[:diary][:mood], behavior: params[:diary][:behavior], date: params[:diary][:date])
-      @diary.save 
+      @diary = current_user.diaries.build(id: params[:diary][:id], cat_id: params[:diary][:cat_id], mood: params[:diary][:mood], behavior: params[:diary][:behavior], date: params[:diary][:date])
+      @diary.save
       redirect '/cats/:id/diaries'
     else
       flash[:error] = "You've already saved this diary."
@@ -40,8 +41,9 @@ class DiariesController < ApplicationController
   # GET: /diaries/5
   get "/diaries/:id" do
     if logged_in?
+      @cat = Cat.find_by(params[:id])
       @diary = Diary.find_by_id(params[:id])
-      @cat = Cat.find_by(id: @diary.cat_id) 
+      # binding.pry
       erb :"/diaries/show.html"
     else 
       redirect '/login'
@@ -55,7 +57,7 @@ class DiariesController < ApplicationController
       # binding.pry
       erb :"/diaries/edit.html"
     else
-      redirect '/diaries'
+      redirect '/cats'
     end
   end
 
@@ -76,11 +78,10 @@ class DiariesController < ApplicationController
     if logged_in? && current_user
       @diary = Diary.find_by_id(params[:id])
         @diary.delete
-        redirect '/diaries'
+        redirect '/cats'
     else       
       redirect "/diaries/#{@diary.id}/edit"
     end
   end
   
 end
-
