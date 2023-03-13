@@ -4,7 +4,7 @@ class DiariesController < ApplicationController
   get "/cats/:id/diaries" do
     if logged_in? && current_user.diaries != []
       @cat = Cat.find_by(params[:id])
-      @diaries = current_user.diaries.find_by(params[:cat_id])
+      @diaries = current_user.diaries.find_by(cat_id: @cat.id)
       # @cat = Cat.find_by(id: @diaries.cat_id) 
       # @diary = Diary.find_by_id(params[:id]) 
       # @diaries = @cat.diaries
@@ -42,8 +42,7 @@ class DiariesController < ApplicationController
   get "/diaries/:id" do
     if logged_in?
       @cat = Cat.find_by(params[:id])
-      @diary = Diary.find_by_id(params[:id])
-      # binding.pry
+      @diary = current_user.diaries.find_by(cat_id: @cat.id)
       erb :"/diaries/show.html"
     else 
       redirect '/login'

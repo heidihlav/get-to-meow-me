@@ -3,7 +3,9 @@
 <% if @cat.name == [] %>
   <div>"You don't have any diaries for" <%= @cat.name %> "yet!"</div>
 <% end %>
-<div><a href="/cats/<%= @cat.id %>/diaries/new"><button>New Diary</button></a></div> 
+<div><a href="/cats/<%= @cat.id %>/diaries">Click here to see all of <%=@cat.name%>'s entries</a></div>
+<div><a href="/cats/<%= @cat.id %>/diaries/new"><button>New Diary</button></a></div>
+
 <%# <div><a href="/cats/<%= @cat.id/edit"><button>Edit</button></a></div>  %>
     
 <div>
