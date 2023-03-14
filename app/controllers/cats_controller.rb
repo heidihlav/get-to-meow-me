@@ -46,11 +46,9 @@ class CatsController < ApplicationController
     if logged_in? && current_user
       @diary = Diary.find_by_id(params[:id])
       @cat = Cat.find_by_id(params[:id])
-      binding.pry
         if @cat.id && @diary.cat_id
           erb :"/cats/show.html"
         else
-          flash[:error] = "You don't have any entries for this."
           redirect '/cats'
         end
     end
