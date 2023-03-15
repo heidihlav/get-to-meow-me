@@ -1,7 +1,7 @@
 <div class="wrapper">
 
 <h1>New Entry</h1>
-<form method="post" action="/cats/:id/diaries">
+<form method="post" action="/cats/<%= @cat.id %>/diaries">
   
   <h2><%=@cat.name%></h2>
   <input type="hidden" value=<%= @cat.id %> name="diary[cat_id]" id="cat_id" />
