@@ -3,11 +3,8 @@ class DiariesController < ApplicationController
   # GET: /diaries
   get "/cats/:id/diaries" do
     if logged_in? && current_user 
-      @cat = Cat.find_by(params[:id])
-      @diaries = current_user.diaries.find_by(cat_id: params )
-      binding.pry
-      # @diary = Diary.find_by_id(params[:id]) cat_id: params[:diary][:cat_id] 
-      # @diaries = @cat.diaries   @cat.id
+      @cat = Cat.find_by_id(params[:id])
+      @diaries = current_user.diaries.where(cat_id: @cat.id)
       erb :"/diaries/index.html"
     else
       flash[:error] = "You don't have any entries for this cat."
