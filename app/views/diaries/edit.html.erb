@@ -1,3 +1,5 @@
+<div class="wrapper">
+
 <form method="post" action="/diaries/<%= @diary.id %>">
   <input type="hidden" name="_method" value="patch" />
   <p>
@@ -20,3 +22,4 @@
     <div><label for="behavior">Behavior</label></div>
     <input id="behavior" type="text" name="cat[behavior]" value="<%= @cat.behavior %>" />
   </p>
+  </div>
