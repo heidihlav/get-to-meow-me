@@ -61,7 +61,7 @@ class DiariesController < ApplicationController
   patch "/diaries/:id" do
     if logged_in? && current_user
       @diary = Diary.find_by_id(params[:id])
-      @diary.update(title: params[:diary][:title], date: params[:diary][:date])
+      @diary.update(mood: params[:diary][:mood], behavior: params[:diary][:behavior])
       @diary.save
       redirect "/diaries/#{@diary.id}"
     else 
