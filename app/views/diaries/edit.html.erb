@@ -2,7 +2,7 @@
 
 <form method="post" action="/diaries/<%= @diary.id %>">
   <input type="hidden" name="_method" value="patch" />
-  <p>
+<p>
     <div><label for="title">Title</label></div>
     <input id="name" type="text" name="diary[title]" value="<%= @diary.title %>" />
   </p>
