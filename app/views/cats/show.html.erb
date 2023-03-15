@@ -4,11 +4,6 @@
 
 <%# <div>
   <h1><%= @cat.name %></h1>
-  <%# <form method="post" action="/cats/<%= @cat.id/delete"> %>
-    <%# <input type="hidden" name="_method" value="delete" /> %>
-    <%# <input type="submit" value="Delete" /> %>
-  <%# </form> %>
-<%# </div> %> %> %>
 
 <div><a href="/cats/<%= @cat.id %>/diaries">Click here to see all of <%=@cat.name%>'s entries</a></div>
 <div><a href="/cats/<%= @cat.id %>/diaries/new"><button>New Diary</button></a></div>
