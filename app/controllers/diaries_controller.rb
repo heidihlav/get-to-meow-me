@@ -39,8 +39,7 @@ class DiariesController < ApplicationController
   # GET: /diaries/5
   get "/diaries/:id" do
     if logged_in?
-      @cat = Cat.find_by(params[:id])
-      @diary = current_user.diaries.find_by(cat_id: @cat.id)
+      @diary = current_user.diaries.find_by_id(params[:id])
       erb :"/diaries/show.html"
     else 
       redirect '/login'
