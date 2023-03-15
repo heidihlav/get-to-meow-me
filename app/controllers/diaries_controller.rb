@@ -29,7 +29,7 @@ class DiariesController < ApplicationController
     if logged_in?
       @diary = current_user.diaries.build(id: params[:diary][:id], cat_id: params[:diary][:cat_id], mood: params[:diary][:mood], behavior: params[:diary][:behavior], date: params[:diary][:date])
       @diary.save
-      redirect '/cats/:id/diaries'
+      redirect "/cats/#{@diary.cat_id}/diaries"
     else
       flash[:error] = "You've already saved this diary."
       erb :'diaries/new.html'
