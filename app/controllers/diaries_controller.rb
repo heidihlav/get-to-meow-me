@@ -7,7 +7,10 @@ class DiariesController < ApplicationController
       @diaries = current_user.diaries.where(cat_id: @cat.id)
         if @diaries == []
           flash[:error] = "You don't have any entries for this cat."
-      redirect '/cats'
+          redirect "/cats/#{@cat.id}"
+        else 
+          erb :"/diaries/index.html"
+        end
     end
   end
 
