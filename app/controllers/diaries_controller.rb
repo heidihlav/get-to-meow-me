@@ -5,9 +5,8 @@ class DiariesController < ApplicationController
     if logged_in? && current_user 
       @cat = Cat.find_by_id(params[:id])
       @diaries = current_user.diaries.where(cat_id: @cat.id)
-      erb :"/diaries/index.html"
-    else
-      flash[:error] = "You don't have any entries for this cat."
+        if @diaries == []
+          flash[:error] = "You don't have any entries for this cat."
       redirect '/cats'
     end
   end
