@@ -52,7 +52,6 @@ class DiariesController < ApplicationController
   get "/diaries/:id/edit" do
     if logged_in? && current_user
       @diary = Diary.find_by_id(params[:id])
-      # binding.pry
       erb :"/diaries/edit.html"
     else
       redirect '/cats'
