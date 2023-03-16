@@ -10,7 +10,7 @@ post '/users' do
       session[:id] = @user.id
       redirect '/'
     else
-      flash[:error] = "Incorrect username or password."
+      flash[:error] = "Please enter a valid email and password."
       erb :'users/new'
     end
 end
