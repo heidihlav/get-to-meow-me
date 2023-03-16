@@ -1,6 +1,6 @@
 <div class="wrapper">  
-  <p><%=flash[:error]%></p>
-  <h1>Your diaries for <%=@cat.name%></h1>
+  <%=flash[:error]%>
+  <h1>Your entries for <%=@cat.name%></h1>
     <% @diaries.each do |diary| %>
       <div><a href="/diaries/<%= diary.id %>"><%=diary.date%></a></div>
     <%end%>

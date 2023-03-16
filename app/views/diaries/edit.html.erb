@@ -1,5 +1,7 @@
 <div class="wrapper">
 
+<h1>Entry for <%=@diary.cat.name%> on <%= @diary.date %></h1>
+
 <form method="post" action="/diaries/<%= @diary.id %>">
   <input type="hidden" name="_method" value="patch" />
 <p>
