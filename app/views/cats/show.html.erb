@@ -1,5 +1,5 @@
 <div class="wrapper">
-<p><%=flash[:error]%></p>
+<%=flash[:error]%>
 <h1><%= @cat.name %></h1>
 
 <div><a href="/cats/<%= @cat.id %>/diaries">Click here to see all of <%=@cat.name%>'s entries</a></div>
