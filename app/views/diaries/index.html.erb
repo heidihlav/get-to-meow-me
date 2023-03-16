@@ -3,9 +3,7 @@
   <h1>Your entries for <%=@cat.name%></h1>
     <% @diaries.each do |diary| %>
       <div><a href="/diaries/<%= diary.id %>"><%=diary.date%></a></div>
-    <%end%>
-
-  <p><%flash[:error]%></p>
+    <% end %>
 </div>
 
 
