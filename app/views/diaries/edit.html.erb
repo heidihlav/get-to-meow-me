@@ -3,10 +3,10 @@
 <form method="post" action="/diaries/<%= @diary.id %>">
   <input type="hidden" name="_method" value="patch" />
 <p>
-    <div><label for="title">Title</label></div>
-    <input id="name" type="text" name="diary[title]" value="<%= @diary.title %>" />
-  </p>
-  <p>
+  <div><label for="mood">Mood</label></div>
+  <input id="mood" type="text" name="diary[mood]" value="<%= @diary.mood %>" />
+</p>
+<p>
     <div><label for="day">Date</label></div>
     <input id="date" type="datetime-local" name="diary[date]" value="<%= @diary.date %>" />
   </p>
