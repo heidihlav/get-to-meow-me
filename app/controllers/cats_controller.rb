@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
 
-  # GET: /cats ok
+  # GET: /cats
   get "/cats" do
     if logged_in?
       @cats = current_user.cats
@@ -26,11 +26,10 @@ class CatsController < ApplicationController
   # POST: /cats ok
   post "/cats" do
     if logged_in?
-      # @diary = Diary.all
       @cat = current_user.cats.build(name: params[:cat][:name])
       found_cat = current_user.cats.find_by(name: @cat.name)
         if found_cat
-          flash[:error] = "You've already saved this cat."
+          flash[:error] = "You've already saved this cat!"
           redirect '/cats/new'
         else
           @cat.save

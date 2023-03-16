@@ -6,4 +6,9 @@
   <p><%= @diary.behavior %></p>
 
 <div><a href="/diaries/<%= @diary.id%>/edit"><button>Edit</button></a></div>    
+<div>
+  <form method="post" action="/diaries/<%= @diary.id %>/delete">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" value="Delete" />
+  </form>
 </div>

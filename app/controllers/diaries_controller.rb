@@ -33,7 +33,7 @@ class DiariesController < ApplicationController
       @diary.save
       redirect "/cats/#{@diary.cat_id}/diaries"
     else
-      flash[:error] = "You've already saved this diary."
+      # flash[:error] = "You've already saved this diary."
       erb :'diaries/new.html'
     end
   end
@@ -75,9 +75,9 @@ class DiariesController < ApplicationController
   delete "/diaries/:id/delete" do
     if logged_in? && current_user
       @diary = Diary.find_by_id(params[:id])
-        @diary.delete
-        redirect '/cats'
-    else       
+      @diary.delete
+      redirect '/cats'
+    else      
       redirect "/diaries/#{@diary.id}/edit"
     end
   end
