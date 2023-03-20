@@ -1,11 +1,7 @@
 <div class="wrapper">
-<%=flash[:error]%>
-<h1><%= @cat.name %></h1>
-
-<div><a href="/cats/<%= @cat.id %>/diaries">Click here to see all of <%=@cat.name%>'s entries</a></div>
-<div><a href="/cats/<%= @cat.id %>/diaries/new"><button>New Diary</button></a></div>
-
-<div>
+  <%=flash[:error]%>
+  <h1><%= @cat.name %></h1>
+  <div>
     <p><a href="/cats/<%= @cat.id %>/diaries">Click here to see all of <%=@cat.name%>'s entries</a></p>
     <p><a href="/cats/<%= @cat.id %>/diaries/new"><button>New Diary</button></a></p>
   </div>
