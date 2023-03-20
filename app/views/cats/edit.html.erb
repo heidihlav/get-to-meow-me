@@ -1,13 +1,9 @@
 <div class="wrapper">
 
-<h1>Update your cat's name.</h1>
-<form method="post" action="/cats/<%= @cat.id %>">
-  <input type="hidden" name="_method" value="patch" />
-  <p>
-    <div><label for="name">Name</label></div>
-    <input id="name" type="text" name="cat[name]" value="<%= @cat.name %>" />
-  </p>
-  
-  <input type="submit" value="Update Entry" />
-</form>
+<h2> Remove <%=@cat.name%> from my cats.</h2> 
+<div>
+  <form method="post" action="/cats/<%= @cat.id %>/delete">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" value="Delete" />
+  </form>
 </div>
