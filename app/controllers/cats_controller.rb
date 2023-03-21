@@ -6,7 +6,7 @@ class CatsController < ApplicationController
       @cats = current_user.cats
       erb :"/cats/index.html"
     else 
-      flash[:error] = "Please log in."
+      # flash[:error] = "Please log in."
       redirect '/login'
     end
   end
@@ -41,9 +41,8 @@ class CatsController < ApplicationController
   # GET: /cats/5
   get "/cats/:id" do
     if logged_in? && current_user
-      @diary = Diary.find_by_id(params[:id])
       @cat = Cat.find_by_id(params[:id])
-        if @cat.id && @diary.cat_id
+        if @cat.id 
           erb :"/cats/show.html"
         else
           redirect '/cats'
