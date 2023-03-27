@@ -6,7 +6,6 @@ class CatsController < ApplicationController
       @cats = current_user.cats
       erb :"/cats/index.html"
     else 
-      # flash[:error] = "Please log in."
       redirect '/login'
     end
   end
