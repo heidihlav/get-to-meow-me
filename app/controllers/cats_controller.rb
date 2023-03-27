@@ -41,12 +41,11 @@ class CatsController < ApplicationController
   # GET: /cats/5
   get "/cats/:id" do
     if logged_in? && current_user
-      @cat = Cat.find_by_id(params[:id])
-        if @cat.id 
-          erb :"/cats/show.html"
-        else
-          redirect '/cats'
-        end
+      if @cat = current_user.cats.find_by_id(params[:id])
+        erb :"/cats/show.html"
+      else
+        redirect '/cats'
+      end
     end
   end
 

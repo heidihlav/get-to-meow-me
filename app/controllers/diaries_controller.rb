@@ -40,11 +40,12 @@ class DiariesController < ApplicationController
 
   # GET: /diaries/5
   get "/diaries/:id" do
-    if logged_in?
-      @diary = current_user.diaries.find_by_id(params[:id])
-      erb :"/diaries/show.html"
-    else 
-      redirect '/login'
+    if logged_in? && current_user
+      if @diary = current_user.diaries.find_by_id(params[:id])
+        erb :"/diaries/show.html"
+      else
+        redirect '/cats'
+      end
     end
   end
 
