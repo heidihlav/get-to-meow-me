@@ -33,7 +33,6 @@ class DiariesController < ApplicationController
       @diary.save
       redirect "/cats/#{@diary.cat_id}/diaries"
     else
-      # flash[:error] = "You've already saved this diary."
       erb :'diaries/new.html'
     end
   end
